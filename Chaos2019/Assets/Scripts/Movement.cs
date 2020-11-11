@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public GameObject unit;
 
-    public List<GameObject> spawnedUnits;
+    private Unit myStats;
 
+    public GameObject attackTarget;
+
+    public GameObject gameManager;
+    
     // Start is called before the first frame update
     void Start()
     {
-        spawnedUnits = new List<GameObject>();
+        myStats = GetComponent<Unit>();
     }
 
     // Update is called once per frame
@@ -35,21 +38,21 @@ public class Movement : MonoBehaviour
             transform.Translate(Vector3.left);
         }
 
-        // SPAWN UNIT TEST TEXT
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            CastSpell();
+            /* --- Currently picking first object from list of mobs, and then attacking --- */
+            
+            attackTarget = gameManager.GetComponent<SpawnEnemy>().spawnedUnits[0];
+
+            int h = attackTarget.GetComponent<Unit>().health;
+
+            int attackDamage = myStats.attack - attackTarget.GetComponent<Unit>().defence;
+
+            attackTarget.GetComponent<Unit>().SetHealth(h - attackDamage);
+
         }
 
-
-        void CastSpell()
-        {
-            GameObject go = Instantiate(unit, new Vector3(Random.Range(0, 10), 1, Random.Range(0, 10)), Quaternion.identity);
-
-            go.GetComponent<Unit>().SetHealth(Random.Range(0,5));
-            go.GetComponent<Unit>().GetHealth();      
-            spawnedUnits.Add(go);
-        }
 
     }
 }
