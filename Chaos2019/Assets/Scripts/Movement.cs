@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 
     private Unit myStats;
 
-    public GameObject attackTarget;
+    public GameObject target;
 
     public GameObject gameManager;
     
@@ -43,13 +43,13 @@ public class Movement : MonoBehaviour
         {
             /* --- Currently picking first object from list of mobs, and then attacking --- */
             
-            attackTarget = gameManager.GetComponent<SpawnEnemy>().spawnedUnits[0];
+            target = gameManager.GetComponent<SpawnEnemy>().spawnedUnits[0];
 
-            int h = attackTarget.GetComponent<Unit>().health;
+            int h = target.GetComponent<Unit>().health;
 
-            int attackDamage = myStats.attack - attackTarget.GetComponent<Unit>().defence;
+            int attackDamage = myStats.attack - target.GetComponent<Unit>().defence;
 
-            attackTarget.GetComponent<Unit>().SetHealth(h - attackDamage);
+            target.GetComponent<Unit>().SetHealth(h - attackDamage);
 
         }
 
