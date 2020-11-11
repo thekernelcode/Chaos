@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        gameManager = FindObjectOfType<SpawnEnemy>();
+        //gameManager = FindObjectOfType<SpawnEnemy>();
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class Unit : MonoBehaviour
         if (health <= 0)
         {
             Destroy(this.gameObject);
-            gameManager.spawnedUnits.Remove(this.gameObject);
+            //gameManager.spawnedUnits.Remove(this.gameObject);
 
         }
     }
